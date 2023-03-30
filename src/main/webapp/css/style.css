@@ -1,18 +1,3 @@
-header {
-    background: none repeat scroll 0 0 #A6C9E2;
-    color: #2E6E9E;
-    font-size: 20px;
-    padding: 5px 20px;
-}
-
-footer {
-    background: none repeat scroll 0 0 #A6C9E2;
-    color: #2E6E9E;
-    font-size: 20px;
-    padding: 5px 20px;
-    margin: 20px 0;
-}
-
 dl {
     background: none repeat scroll 0 0 #FAFAFA;
     margin: 8px 0;
@@ -30,7 +15,10 @@ dd {
     vertical-align: top;
 }
 
-h2 {
-    margin: 15px 0 5px;
+tr[data-mealExcess="false"] {
+    color: green;
 }
 
+tr[data-mealExcess="true"] {
+    color: red;
+}
