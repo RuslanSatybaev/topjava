@@ -10,6 +10,7 @@ import ru.javawebinar.topjava.util.Util;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collections;
@@ -38,6 +39,11 @@ public class InMemoryMealRepository implements MealRepository {
     @Override
     public List<Meal> getAll(int userId) {
         return getAllFiltered(userId, meal -> true);
+    }
+
+    @Override
+    public List<Meal> getBetweenInclusive(LocalDate startDate, LocalDate endDate, int userId) {
+        return null;
     }
 
     @Override
@@ -72,11 +78,6 @@ public class InMemoryMealRepository implements MealRepository {
     public Meal get(int id, int userId) {
         Map<Integer, Meal> meals = usersMealsMap.get(userId);
         return meals == null ? null : meals.get(id);
-    }
-
-    @Override
-    public List<Meal> getBetween(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        return getAllFiltered(userId, meal -> Util.isBetweenInclusive(meal.getDateTime(), startDateTime, endDateTime));
     }
 
     private List<Meal> getAllFiltered(int userId, Predicate<Meal> filter) {

@@ -33,8 +33,10 @@ public class UserServiceTest {
     public void create() throws Exception {
         User newUser = new User(null, "New", "new@gmail.com", "newPass", 1555, false, new Date(), Collections.singleton(Role.ROLE_USER));
         User created = service.create(newUser);
-        newUser.setId(created.getId());
-        assertMatch(service.getAll(), ADMIN, newUser, USER);
+        Integer newId = created.getId();
+        newUser.setId(newId);
+        assertMatch(created, newUser);
+        assertMatch(service.get(newId), newUser);
     }
 
     @Test(expected = DataAccessException.class)
